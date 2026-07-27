@@ -1,12 +1,12 @@
 /* ============================================================
-   Negrett Cabelos — interações
+   Negrett Cabelos, interações
    ============================================================ */
 
 // Link único de agendamento (Booksy). Trocar aqui se necessário.
 const BOOKING_URL = "https://booksy.com/pt-br/211337_negrett-cabelos_saloes-de-beleza_1016889_sao-jose-do-rio-preto";
 
 // ============================================================
-// Trustindex — avaliações do Google que se atualizam sozinhas.
+// Trustindex, avaliações do Google que se atualizam sozinhas.
 // Cole aqui o ID do widget (o trecho depois de "loader.js?").
 // Ex.: const TRUSTINDEX_WIDGET_ID = "111fa111950c622dern267v531";
 // Enquanto estiver vazio (""), o site mostra os depoimentos fixos abaixo.
@@ -18,6 +18,28 @@ document.querySelectorAll("[data-booking]").forEach((el) => {
   el.setAttribute("target", "_blank");
   el.setAttribute("rel", "noopener");
 });
+
+// ============================================================
+// Seções com foto: enquanto não há imagens, ficam ocultas.
+// Quando as fotos estiverem prontas, troque para true e a seção
+// (e o link no menu) voltam a aparecer automaticamente.
+// ============================================================
+const MOSTRAR_ESPACO = false;     // seção "Conheça nosso espaço" (galeria)
+const MOSTRAR_FOTO_SOBRE = false; // foto do Douglas na seção "Sobre"
+
+if (!MOSTRAR_ESPACO) {
+  const espaco = document.getElementById("espaco");
+  if (espaco) espaco.setAttribute("hidden", "");
+  document
+    .querySelectorAll('a[href="#espaco"]')
+    .forEach((a) => a.setAttribute("hidden", ""));
+}
+if (!MOSTRAR_FOTO_SOBRE) {
+  const foto = document.querySelector(".about__photo");
+  if (foto) foto.setAttribute("hidden", "");
+  const about = document.querySelector(".about");
+  if (about) about.classList.add("about--no-photo");
+}
 
 /* ---------- Serviços ---------- */
 const SERVICES = [
@@ -179,12 +201,12 @@ if (TRUSTINDEX_WIDGET_ID && tiMount) {
 /* ---------- Horário de funcionamento ---------- */
 /* Ajuste os horários reais aqui. dow: 0=Domingo ... 6=Sábado */
 const HOURS = [
-  { dow: 1, label: "Segunda", value: "09:00 – 19:00" },
-  { dow: 2, label: "Terça",   value: "09:00 – 19:00" },
-  { dow: 3, label: "Quarta",  value: "09:00 – 19:00" },
-  { dow: 4, label: "Quinta",  value: "09:00 – 19:00" },
-  { dow: 5, label: "Sexta",   value: "09:00 – 19:00" },
-  { dow: 6, label: "Sábado",  value: "09:00 – 18:00" },
+  { dow: 1, label: "Segunda", value: "Fechado" },
+  { dow: 2, label: "Terça",   value: "09h às 19h" },
+  { dow: 3, label: "Quarta",  value: "09h às 19h" },
+  { dow: 4, label: "Quinta",  value: "09h às 19h" },
+  { dow: 5, label: "Sexta",   value: "09h às 19h" },
+  { dow: 6, label: "Sábado",  value: "09h às 18h" },
   { dow: 0, label: "Domingo", value: "Fechado" },
 ];
 const hoursList = document.getElementById("hoursList");

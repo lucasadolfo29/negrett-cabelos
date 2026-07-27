@@ -290,6 +290,10 @@ h1, h2, h3 { line-height: 1.12; font-weight: 700; letter-spacing: -0.01em; }
 .about__sign { margin-top: 26px; display: flex; align-items: center; gap: 14px; }
 .about__sign img { height: 34px; }
 .about__sign span { font-size: .9rem; color: #8a7a70; }
+/* util: ocultar elementos (seções/fotos ainda sem imagem) */
+[hidden] { display: none !important; }
+/* seção "Sobre" sem a foto: texto ocupa a largura toda */
+.about--no-photo { grid-template-columns: 1fr; max-width: 760px; }
 
 /* ============================================================
    CONTATO / LOCALIZAÇÃO
