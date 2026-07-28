@@ -146,36 +146,10 @@ function serviceCard(s) {
 const grid = document.getElementById("servicesGrid");
 if (grid) grid.innerHTML = SERVICES.map(serviceCard).join("");
 
-/* ---------- Depoimentos (Google) ---------- */
-const REVIEWS = [
-  { name: "Nathalia", text: "Resultado sempre incrível! Saio de lá me sentindo outra pessoa, com o cabelo lindo e definido." },
-  { name: "Larice", text: "O Negrett é sempre muito atencioso, ótimo profissional! Entende exatamente o que o meu cabelo precisa." },
-  { name: "Duda", text: "Atendimento incrível, me senti super à vontade do início ao fim. Recomendo demais!" },
-  { name: "Milena", text: "Atendimento sensacional, deixou meu cabelo perfeito. Já virei cliente fiel." },
-  { name: "Bianca", text: "Especialista de verdade em cacho e crespo. Finalmente encontrei um lugar que respeita a minha curvatura." },
-  { name: "Rafael", text: "Melhor corte que já fiz. Profissional atencioso, ambiente acolhedor e resultado impecável." },
-];
-
-function initials(name) { return name.trim().charAt(0).toUpperCase(); }
-function reviewCard(r) {
-  return `
-    <article class="review reveal">
-      <div class="stars">★★★★★</div>
-      <p>“${r.text}”</p>
-      <div class="review__author">
-        <div class="review__avatar">${initials(r.name)}</div>
-        <div>
-          <b>${r.name}</b>
-          <span>Avaliação no Google</span>
-        </div>
-      </div>
-    </article>`;
-}
-const rGrid = document.getElementById("reviewsGrid");
-if (rGrid) rGrid.innerHTML = REVIEWS.map(reviewCard).join("");
-
-// Trustindex: se o ID estiver configurado, carrega o widget ao vivo e
-// esconde os depoimentos fixos (fallback). Sem ID, mantém o fallback.
+/* ---------- Depoimentos (Google via Trustindex) ---------- */
+// Carrega o widget ao vivo do Trustindex. As avaliações se atualizam
+// sozinhas quando o widget está publicado e conectado ao Google no
+// painel do Trustindex (trustindex.io). Não há mais depoimentos fixos.
 const tiMount = document.getElementById("tiWidget");
 if (TRUSTINDEX_WIDGET_ID && tiMount) {
   const s = document.createElement("script");
@@ -183,17 +157,6 @@ if (TRUSTINDEX_WIDGET_ID && tiMount) {
   s.defer = true;
   s.async = true;
   tiMount.appendChild(s);
-  if (rGrid) rGrid.style.display = "none";
-
-  // Rede de segurança: se o widget do Trustindex não renderizar
-  // (ex.: domínio ainda não liberado, ou visualização em localhost),
-  // os depoimentos fixos voltam para a seção nunca ficar vazia.
-  setTimeout(() => {
-    const rendered =
-      tiMount.querySelector(".ti-widget, iframe, [class*='trustindex']") ||
-      tiMount.innerText.trim().length > 40;
-    if (!rendered && rGrid) rGrid.style.display = "";
-  }, 5000);
 } else if (tiMount) {
   tiMount.style.display = "none";
 }
