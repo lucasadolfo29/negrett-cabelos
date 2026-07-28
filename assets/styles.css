@@ -406,3 +406,73 @@ h1, h2, h3 { line-height: 1.12; font-weight: 700; letter-spacing: -0.01em; }
   * { scroll-behavior: auto !important; }
   .reveal { transition: none; opacity: 1; transform: none; }
 }
+
+/* ============================================================
+   BLOG (índice + artigos)
+   ============================================================ */
+.blog-hero {
+  background:
+    radial-gradient(120% 90% at 85% 10%, rgba(217,144,101,.30), transparent 55%),
+    linear-gradient(160deg, #4a352f 0%, var(--brown) 55%, #3a2b27 100%);
+  color: #fff; padding: clamp(48px, 8vw, 84px) 0 clamp(40px, 6vw, 64px);
+}
+.blog-hero h1 { font-size: clamp(2rem, 5.5vw, 3rem); color: #fff; margin-top: 12px; }
+.blog-hero p { color: #EEDFD2; margin-top: 14px; max-width: 60ch; font-size: 1.08rem; }
+
+/* Breadcrumb */
+.crumbs { font-size: .86rem; color: #C9B8AB; }
+.crumbs a { color: #EEDFD2; }
+.crumbs a:hover { color: var(--terracota); }
+.crumbs span { opacity: .6; margin: 0 6px; }
+
+/* Índice de posts */
+.posts-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 22px; }
+.post-card {
+  display: flex; flex-direction: column; background: var(--white); border-radius: var(--radius);
+  overflow: hidden; border: 1px solid rgba(95,70,65,.1); box-shadow: var(--shadow-sm);
+  transition: transform .2s ease, box-shadow .2s ease;
+}
+.post-card:hover { transform: translateY(-4px); box-shadow: var(--shadow); }
+.post-card__thumb { aspect-ratio: 16/9; display: grid; place-items: center; color: #fff; padding: 18px; text-align: center; }
+.post-card__thumb.t1 { background: linear-gradient(160deg, var(--terracota), var(--terracota-dark)); }
+.post-card__thumb.t2 { background: linear-gradient(160deg, var(--green), var(--green-dark)); }
+.post-card__thumb.t3 { background: linear-gradient(160deg, var(--brown), var(--brown-dark)); }
+.post-card__thumb span { font-weight: 700; font-size: 1.05rem; }
+.post-card__body { padding: 22px 22px 24px; display: flex; flex-direction: column; flex: 1; }
+.post-card__cat { font-size: .74rem; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; color: var(--terracota-dark); }
+.post-card h2 { font-size: 1.18rem; color: var(--brown-dark); margin: 8px 0 10px; line-height: 1.25; }
+.post-card p { font-size: .95rem; color: #5f5049; flex: 1; }
+.post-card a.more { margin-top: 16px; font-weight: 600; color: var(--green-dark); }
+.post-card a.more:hover { color: var(--terracota-dark); }
+
+/* Artigo */
+.post { padding: clamp(40px, 6vw, 72px) 0; }
+.post__wrap { max-width: 760px; margin-inline: auto; }
+.post__meta { font-size: .86rem; color: #8a7a70; margin-bottom: 22px; display: flex; gap: 14px; flex-wrap: wrap; }
+.prose { color: #40332e; font-size: 1.09rem; line-height: 1.75; }
+.prose > p { margin: 0 0 20px; }
+.prose h2 { font-size: clamp(1.4rem, 3.4vw, 1.8rem); color: var(--brown-dark); margin: 40px 0 14px; }
+.prose h3 { font-size: 1.22rem; color: var(--brown-dark); margin: 28px 0 10px; }
+.prose ul, .prose ol { margin: 0 0 20px; padding-left: 1.3em; }
+.prose li { margin-bottom: 9px; }
+.prose strong { color: var(--brown-dark); }
+.prose a { color: var(--terracota-dark); font-weight: 600; text-decoration: underline; text-underline-offset: 3px; }
+.prose blockquote {
+  margin: 26px 0; padding: 16px 22px; border-left: 4px solid var(--terracota);
+  background: var(--cream-2); border-radius: 0 14px 14px 0; font-size: 1.08rem; color: #4a3b35;
+}
+.prose img { border-radius: var(--radius-sm); margin: 24px 0; }
+.prose .faq { margin-top: 10px; }
+.prose .faq h3 { margin-top: 22px; }
+
+/* CTA dentro/fim do artigo */
+.post-cta {
+  margin: 44px 0 0; padding: 30px; border-radius: var(--radius); text-align: center;
+  background: radial-gradient(100% 120% at 50% 0%, rgba(217,144,101,.28), transparent 60%),
+    linear-gradient(160deg, var(--green) 0%, var(--green-dark) 100%); color: #fff;
+}
+.post-cta h3 { color: #fff; font-size: 1.4rem; }
+.post-cta p { color: #EAF0DD; margin: 10px auto 20px; max-width: 46ch; }
+
+.post-share { margin-top: 30px; font-size: .9rem; color: #8a7a70; }
+.post-nav { margin-top: 40px; padding-top: 22px; border-top: 1px solid rgba(95,70,65,.14); }
