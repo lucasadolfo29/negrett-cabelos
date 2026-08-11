@@ -5,14 +5,6 @@
 // Link único de agendamento (Booksy). Trocar aqui se necessário.
 const BOOKING_URL = "https://booksy.com/pt-br/211337_negrett-cabelos_saloes-de-beleza_1016889_sao-jose-do-rio-preto";
 
-// ============================================================
-// Trustindex, avaliações do Google que se atualizam sozinhas.
-// Cole aqui o ID do widget (o trecho depois de "loader.js?").
-// Ex.: const TRUSTINDEX_WIDGET_ID = "111fa111950c622dern267v531";
-// Enquanto estiver vazio (""), o site mostra os depoimentos fixos abaixo.
-// ============================================================
-const TRUSTINDEX_WIDGET_ID = "4f67ae0779ac7394a236214a4a7";
-
 document.querySelectorAll("[data-booking]").forEach((el) => {
   el.setAttribute("href", BOOKING_URL);
   el.setAttribute("target", "_blank");
@@ -146,20 +138,35 @@ function serviceCard(s) {
 const grid = document.getElementById("servicesGrid");
 if (grid) grid.innerHTML = SERVICES.map(serviceCard).join("");
 
-/* ---------- Depoimentos (Google via Trustindex) ---------- */
-// Carrega o widget ao vivo do Trustindex. As avaliações se atualizam
-// sozinhas quando o widget está publicado e conectado ao Google no
-// painel do Trustindex (trustindex.io). Não há mais depoimentos fixos.
-const tiMount = document.getElementById("tiWidget");
-if (TRUSTINDEX_WIDGET_ID && tiMount) {
-  const s = document.createElement("script");
-  s.src = "https://cdn.trustindex.io/loader.js?" + TRUSTINDEX_WIDGET_ID;
-  s.defer = true;
-  s.async = true;
-  tiMount.appendChild(s);
-} else if (tiMount) {
-  tiMount.style.display = "none";
+/* ---------- Depoimentos (Google) ---------- */
+// Avaliações reais coletadas do Google Meu Negócio do Negrett.
+// Para adicionar/atualizar, basta editar a lista abaixo.
+const REVIEWS = [
+  { name: "Nathalia", text: "Resultado sempre incrível! Saio de lá me sentindo outra pessoa, com o cabelo lindo e definido." },
+  { name: "Larice", text: "O Negrett é sempre muito atencioso, ótimo profissional! Entende exatamente o que o meu cabelo precisa." },
+  { name: "Juliana", text: "Fiquei muito feliz ao encontrar de fato um lugar em Rio Preto que saiba cuidar de cabelo crespo como o meu. Recomendo!" },
+  { name: "Milena", text: "Atendimento sensacional, deixou meu cabelo perfeito. Já virei cliente fiel." },
+  { name: "Bianca", text: "Especialista de verdade em cacho e crespo. Finalmente encontrei um lugar que respeita a minha curvatura." },
+  { name: "Fernando", text: "Excelente atendimento e corte de cabelo. Satisfação total, recomendo demais!" },
+];
+
+function initials(name) { return name.trim().charAt(0).toUpperCase(); }
+function reviewCard(r) {
+  return `
+    <article class="review reveal">
+      <div class="stars">★★★★★</div>
+      <p>“${r.text}”</p>
+      <div class="review__author">
+        <div class="review__avatar">${initials(r.name)}</div>
+        <div>
+          <b>${r.name}</b>
+          <span>Avaliação no Google</span>
+        </div>
+      </div>
+    </article>`;
 }
+const rGrid = document.getElementById("reviewsGrid");
+if (rGrid) rGrid.innerHTML = REVIEWS.map(reviewCard).join("");
 
 /* ---------- Horário de funcionamento ---------- */
 /* Ajuste os horários reais aqui. dow: 0=Domingo ... 6=Sábado */
