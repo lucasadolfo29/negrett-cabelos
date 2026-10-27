@@ -68,7 +68,7 @@ const SERVICES = [
   {
     title: "Corte Black Power",
     tag: "curvatura", icon: "afro",
-    desc: "Valoriza o volume e o formato do cabelo crespo em sua forma mais autêntica e cheia de atitude. Inclui higienização e finalização. O valor varia conforme o tamanho e o volume do cabelo.",
+    desc: "Valoriza o volume e o formato do cabelo crespo em sua forma mais autêntica e cheia de atitude. Inclui finalização. O valor varia conforme o tamanho e o volume do cabelo.",
     price: "120", priceFrom: true, duration: "1h",
   },
   {
@@ -80,19 +80,19 @@ const SERVICES = [
   {
     title: "Corte + Nu dreads",
     tag: "curvatura", icon: "afro",
-    desc: "Corte afro curto com finalização em nudreds, criando textura e um acabamento cheio de personalidade. Inclui higienização e finalização.",
+    desc: "Corte afro curto com finalização em nudreds, criando textura e um acabamento cheio de personalidade.",
     price: "110", duration: "45min",
   },
   {
     title: "Corte Masculino",
     tag: "masc", icon: "scissors",
-    desc: "Corte masculino simples. Cabelo médio, com finalização ou risco tem valor adicional. Inclui higienização.",
+    desc: "Corte masculino simples. Cabelo médio, com finalização ou risco tem valor adicional.",
     price: "80", priceFrom: true, duration: "45min",
   },
   {
     title: "Corte + Barba",
     tag: "masc", icon: "scissors",
-    desc: "Corte de cabelo + barba aparada e alinhada. Inclui higienização e finalização.",
+    desc: "Corte de cabelo + barba aparada e alinhada.",
     price: null, duration: "1h",
   },
   {
